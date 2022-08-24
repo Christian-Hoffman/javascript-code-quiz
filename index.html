@@ -5,31 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
     <title>JavaScript Code Quiz</title>
 </head>
 
 <body>
     <header>
-        <h1>HighScores</h1>
+        <button>HighScores</button>
         <time id="timer">Time Left: </time>
     </header>
 
     <main>
         <section id="home">
             <h2>JavaScript Code Quiz</h2>
-            <button>Start Quiz</button>
+            <button id="start">Start Quiz</button>
         </section>
 
         <section id="quiz">
             <h2>Questions</h2>
             <div id="questions">
+                <ol id="answers">
+
+                </ol>
             </div>
         </section>
 
-        <section id="highscores">
+        <section id="end">
             <h2>HighScores</h2>
             <input type="text" placeholder="Enter Initials" />
             <button>Submit</button>
+        </section>
+
+        <section id="highscore">
+            <h2>HighScores</h2>
         </section>
     </main>
     <script src="./script.js" ></script>
