@@ -11,7 +11,7 @@
 
 <body>
     <header>
-        <button>HighScores</button>
+        <button id="hsbutton">HighScores</button>
         <time id="timer">Time Left: </time>
     </header>
 
@@ -22,18 +22,14 @@
         </section>
 
         <section id="quiz">
-            <h2>Questions</h2>
-            <div id="questions">
-                <ol id="answers">
-
-                </ol>
-            </div>
+            <h2>JavaScript Code Quiz</h2>
+            <div id="questions"></div>
         </section>
 
         <section id="end">
             <h2>HighScores</h2>
-            <input type="text" placeholder="Enter Initials" />
-            <button>Submit</button>
+            <input id="initialsHS" type="text" placeholder="Enter Initials" />
+            <button id="submitHS">Submit</button>
         </section>
 
         <section id="highscore">
