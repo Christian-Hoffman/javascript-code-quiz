@@ -1,55 +1,47 @@
-var homeEl = document.querySelector("#home");
-var quizEl = document.querySelector("#quiz");
-var endEl = document.querySelector("#end");
-var highscoreEl = document.querySelector("#highscore");
-
-// var answersEl = document.querySelector('#answers');
-
-var timeRemaining = 60;
-
 var init = function () {
   setState("home");
 };
 
 var setState = function (state) {
   if (state === "home") {
-    homeEl.setAttribute(
+    $("#home").css(
       "style",
       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
     );
-    quizEl.setAttribute("style", "display: none;");
-    endEl.setAttribute("style", "display: none;");
-    highscoreEl.setAttribute("style", "display: none;");
+    $("#quiz").css("style", "display: none;");
+    $("#end").css("style", "display: none;");
+    $("#highscore").css("style", "display: none;");
   }
   if (state === "quiz") {
-    homeEl.setAttribute("style", "display: none;");
-    quizEl.setAttribute(
+    $("#home").css("style", "display: none;");
+    $("#quiz").css(
       "style",
       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
     );
-    endEl.setAttribute("style", "display: none;");
-    highscoreEl.setAttribute("style", "display: none;");
+    $("#end").css("style", "display: none;");
+    $("#highscore").css("style", "display: none;");
   }
   if (state === "end") {
-    homeEl.setAttribute("style", "display: none;");
-    quizEl.setAttribute("style", "display: none;");
-    endEl.setAttribute(
+    $("#home").css("style", "display: none;");
+    $("#quiz").css("style", "display: none;");
+    $("#end").css(
       "style",
       "display: flex; flex-direction:column; background: aquamarine; font-size: 50px; text-align: center;"
     );
-    highscoreEl.setAttribute("style", "display: none;");
+    $("#highscore").css("style", "display: none;");
   }
   if (state === "highscore") {
-    homeEl.setAttribute("style", "display: none;");
-    quizEl.setAttribute("style", "display: none;");
-    endEl.setAttribute("style", "display: none;");
-    highscoreEl.setAttribute(
+    $("#home").css("style", "display: none;");
+    $("#quiz").css("style", "display: none;");
+    $("#end").css("style", "display: none;");
+    $("#highscore").css(
       "style",
       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
     );
   }
 };
 
+var timeRemaining = 60;
 // Starts countdown clock for quiz
 var countdownClock = function () {
   var timeLeft = setInterval(function () {
@@ -153,6 +145,5 @@ $("#start").on("click", function () {
   displayNext();
   countdownClock();
 });
-
 
 init();
