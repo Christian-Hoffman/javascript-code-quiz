@@ -55,11 +55,14 @@ var countdownClock = function () {
       if (timeRemaining < 1) {
         $("#timer").text("Times Up! You scored: " + timeRemaining + "points");
         clearInterval(timeLeft);
+        $("#quiz").css("display", "none");
+        $("#end").css("display", "flex");
       }
     } else {
       clearInterval(timeLeft);
-      $("#questions").css("display", "none");
       $("#timer").text("You scored: " + timeRemaining + "points");
+      $("#quiz").css("display", "none");
+      $("#end").css("display", "flex");
     }
   }, 1000);
 };
@@ -100,7 +103,7 @@ var isAnswerCorrect = function (e) {
 var displayNext = function () {
   displayQuestions(0);
   $(".choice").on("click", function (e) {
-    if (i < questions.length) {
+    if (i < 4) {
       isAnswerCorrect(e);
       i++;
       displayQuestions(i);
@@ -108,10 +111,19 @@ var displayNext = function () {
   });
 };
 
-var score = function () {
-
+var submitScore = function () {
+  var scores = {
+    initials: $("input[name='initials']").val(),
+    highscore: timeRemaining,
+  };
+  localStorage.setItem("scores", JSON.stringify(timeRemaining));
+  var scoreArray = [];
+  scoreArray.push(scores);
+  scoreArray = scoreArray.concat(
+    JSON.parse(localStorage.getItem("scoreArray") || "[]")
+  );
+  localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
 };
-
 
 $("#start").on("click", function () {
   restart();
@@ -125,5 +137,15 @@ $("#hsbutton").on("click", function () {
   $("#home").hide();
   $("#quiz").hide();
   $("#end").hide();
+  $("#highscore").css("display", "flex");
+});
+
+$("#submitHS").on("click", function () {
+  submitScore();
+  restart();
+  $("#timer").text("");
+  $("#home").css("display", "none");
+  $("#quiz").css("display", "none");
+  $("#end").css("display", "none");
   $("#highscore").css("display", "flex");
 });
