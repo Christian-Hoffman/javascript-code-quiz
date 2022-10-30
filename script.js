@@ -185,8 +185,42 @@ var questions = [
   },
 ];
 
-// var correct =
-// var wrong =
+
+var displayQuestions = function (i) {
+    // displays question
+    $('#question').text(questions[i].options);
+    // displays choices
+    $('#choice1').text(questions[i].choice[0].text);
+    $('#choice2').text(questions[i].choice[1].text);
+    $('#choice3').text(questions[i].choice[2].text);
+    $('#choice4').text(questions[i].choice[3].text);
+    
+    $('#choice1').value(questions[i].choice[0].isCorrect);
+    $('#choice2').value(questions[i].choice[1].isCorrect);
+    $('#choice3').value(questions[i].choice[2].isCorrect);
+    $('#choice4').value(questions[i].choice[3].isCorrect);
+};
+
+var displayNext = function () {
+    displayQuestions(0);
+    $('.choice').on('click', function (e) {
+        if (id < questions.length) {
+            isAnswerCorrect(e);
+            id++;
+            displayQuestions(id);
+        }
+    });
+};
+
+var isAnswerCorrect = function (e) {
+    if($(e.target).value()==='false') {
+        timeRemaining -= 10;
+        $('#result').text('Incorrect');
+    } else if ($(e.target).value() === 'true') {
+        $('#result').text('Correct');
+    }
+};
+
 
 startButton.addEventListener("click", function () {
   setState("quiz");
