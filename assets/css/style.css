@@ -65,16 +65,36 @@ main {
     font-size: 20px;
 }
 
+#question {
+    background-color: #591C0B;
+    padding: 5px;
+}
+
 #choices {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .choice {
     color: #5C5F58;
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bolder;
     margin: 5px;
     padding: 5px;
+}
+
+#result {
+    background-color: #591C0B;
+    color: #DCE1E3;
+    font-size: 40px;
+    margin: 40px;
+    text-align: center;
+}
+
+#quizSection {
+    border: 5px;
+    border-color: #591C0B;
+    background-color: #591C0B;
 }
 
 #home {
