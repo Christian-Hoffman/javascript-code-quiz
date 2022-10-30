@@ -1,61 +1,5 @@
-// var setState = function (state) {
-//   if (state === "home") {
-//     $("#home").css(
-//       "style",
-//       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
-//     );
-//     $("#quiz").css("style", "display: none;");
-//     $("#end").css("style", "display: none;");
-//     $("#highscore").css("style", "display: none;");
-//   }
-//   if (state === "quiz") {
-//     $("#home").css("style", "display: none;");
-//     $("#quiz").css(
-//       "style",
-//       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
-//     );
-//     $("#end").css("style", "display: none;");
-//     $("#highscore").css("style", "display: none;");
-//   }
-//   if (state === "end") {
-//     $("#home").css("style", "display: none;");
-//     $("#quiz").css("style", "display: none;");
-//     $("#end").css(
-//       "style",
-//       "display: flex; flex-direction:column; background: aquamarine; font-size: 50px; text-align: center;"
-//     );
-//     $("#highscore").css("style", "display: none;");
-//   }
-//   if (state === "highscore") {
-//     $("#home").css("style", "display: none;");
-//     $("#quiz").css("style", "display: none;");
-//     $("#end").css("style", "display: none;");
-//     $("#highscore").css(
-//       "style",
-//       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
-//     );
-//   }
-// };
-
 var i = 0;
-var timeRemaining = 60;
-// Starts countdown clock for quiz
-var countdownClock = function () {
-  var timeLeft = setInterval(function () {
-    if (i < questions.length) {
-      timeRemaining--;
-      $("#timer").text("Time Remaining: " + timeLeft);
-      if (timeLeft < 1) {
-        $("#timer").text("Times Up! You scored: " + timeRemaining + "points");
-        clearInterval(timeLeft);
-      }
-    } else {
-      clearInterval(timeLeft);
-      $("#questions").css("display", "none");
-      $("#timer").text("You scored: " + timeRemaining + "points");
-    }
-  }, 1000);
-};
+var timeRemaining;
 
 // Questions
 var questions = [
@@ -101,15 +45,39 @@ var questions = [
   },
 ];
 
+// Starts countdown clock for quiz
+var countdownClock = function () {
+  var timeLeft = setInterval(function () {
+    if (i < 4) {
+      timeRemaining--;
+      $("#timer").text("Time Left: " + timeLeft);
+      if (timeLeft < 1) {
+        $("#timer").text("Times Up! You scored: " + timeRemaining + "points");
+        clearInterval(timeLeft);
+      }
+    } else {
+      clearInterval(timeLeft);
+      $("#questions").css("display", "none");
+      $("#timer").text("You scored: " + timeRemaining + "points");
+    }
+  }, 1000);
+};
+
+var restart = function () {
+  $("#home").hide();
+  $("#result").text("");
+  timeRemaining = 60;
+};
+
 var displayQuestions = function (i) {
-  $('#quiz').css("display", "visible");
+  $("#quiz").css("display", "flex");
   // displays question
-  $("#question").text(questions[i].options);
+  $("#question").text(questions[i].question);
   // displays choices
-  $("#choice1").text(questions[i].options[0].text);
-  $("#choice2").text(questions[i].options[1].text);
-  $("#choice3").text(questions[i].options[2].text);
-  $("#choice4").text(questions[i].options[3].text);
+  $("#choice1").text(questions[i].options[0].choice);
+  $("#choice2").text(questions[i].options[1].choice);
+  $("#choice3").text(questions[i].options[2].choice);
+  $("#choice4").text(questions[i].options[3].choice);
 
   $("#choice1").val(questions[i].options[0].isCorrect);
   $("#choice2").val(questions[i].options[1].isCorrect);
@@ -117,10 +85,20 @@ var displayQuestions = function (i) {
   $("#choice4").val(questions[i].options[3].isCorrect);
 };
 
+// checks is the choice the user clicked is correct and removes time if incorrect
+var isAnswerCorrect = function (e) {
+  if ($(e.target).val() === "false") {
+    timeRemaining = timeRemaining - 10;
+    $("#result").text("Incorrect");
+  } else if ($(e.target).val() === "true") {
+    $("#result").text("Correct");
+  }
+};
+
 var displayNext = function () {
-  displayQuestions(i);
+  displayQuestions(0);
   $(".choice").on("click", function (e) {
-    if (id < questions.length) {
+    if (i < questions.length) {
       isAnswerCorrect(e);
       i++;
       displayQuestions(i);
@@ -128,20 +106,8 @@ var displayNext = function () {
   });
 };
 
-// checks is the choice the user clicked is correct and removes time if incorrect
-var isAnswerCorrect = function (e) {
-  if ($(e.target).value() === "false") {
-    timeRemaining -= 10;
-    $("#result").text("Incorrect");
-  } else if ($(e.target).val() === "true") {
-    $("#result").text("Correct");
-  }
-};
-
 $("#start").on("click", function () {
-  $("home").css("display", "none");
+  restart();
   displayNext();
-  // countdownClock();
+  countdownClock();
 });
-
-init();

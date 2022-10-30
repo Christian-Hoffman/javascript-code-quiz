@@ -65,12 +65,25 @@ main {
     font-size: 20px;
 }
 
+#choices {
+    display: flex;
+    flex-direction: row;
+}
+
+.choice {
+    color: #5C5F58;
+    font-size: 20px;
+    margin: 5px;
+    padding: 5px;
+}
+
 #home {
     display: visible;
 }
 
 #quiz {
     display: none;
+    margin-top: 100px;
 }
 
 #end {
