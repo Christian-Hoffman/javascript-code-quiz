@@ -99,6 +99,27 @@ main {
     background-color: #591C0B;
 }
 
+#submitForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 200px;
+    text-align: center;
+}
+
+#initialsHS {
+    margin-top: 10px;
+    color: black;
+}
+
+#submitHS{
+    background-color: #591C0B;
+    color: #DCE1E3;
+    margin-top: 10px;
+    width: 100px;
+    height: 40px;
+    padding: 10px;
+}
+
 #home {
     display: visible;
 }

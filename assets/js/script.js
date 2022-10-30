@@ -134,9 +134,9 @@ $("#start").on("click", function () {
 $("#hsbutton").on("click", function () {
   restart();
   $("#timer").text("");
-  $("#home").hide();
-  $("#quiz").hide();
-  $("#end").hide();
+  $("#home").css("display", "none");
+  $("#quiz").css("display", "none");
+  $("#end").css("display", "none");
   $("#highscore").css("display", "flex");
 });
 
