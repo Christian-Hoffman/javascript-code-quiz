@@ -47,6 +47,7 @@ var questions = [
 
 // Starts countdown clock for quiz
 var countdownClock = function () {
+  $("#timer").css("display", "flex");
   var timeLeft = setInterval(function () {
     if (i < 4) {
       timeRemaining = timeRemaining - 1;
@@ -66,6 +67,7 @@ var countdownClock = function () {
 var restart = function () {
   $("#home").hide();
   $("#result").text("");
+  $("#timer").hide();
   timeRemaining = 60;
 };
 
@@ -106,8 +108,22 @@ var displayNext = function () {
   });
 };
 
+var score = function () {
+
+};
+
+
 $("#start").on("click", function () {
   restart();
   displayNext();
   countdownClock();
+});
+
+$("#hsbutton").on("click", function () {
+  restart();
+  $("#timer").text("");
+  $("#home").hide();
+  $("#quiz").hide();
+  $("#end").hide();
+  $("#highscore").css("display", "flex");
 });
