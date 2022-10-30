@@ -24,28 +24,6 @@ var init = function () {
   setState("home");
 };
 
-// var correct = function() {
-
-// }
-
-// var wrong = function() {
-
-// };
-
-// var quizEnded = function() {
-//     setState('end')
-// };
-
-var questionNumber = function (state) {
-  if (state === "q1") {
-  }
-  if (state === "q2") {
-  }
-  if (state === "q3") {
-  }
-  if (state === "q4") {
-  }
-};
 
 var setState = function (state) {
   if (state === "home") {
@@ -86,59 +64,6 @@ var setState = function (state) {
   }
 };
 
-var questionOne = function () {
-  var createQuestion = document.createElement("p");
-  questionEl.appendChild(createQuestion);
-  createQuestion.textContent = questions[0].question;
-  for (var i = 0; i < questions[0].choices.length; i++) {
-    var createChoice = document.createElement("button");
-    questionEl.appendChild(createChoice);
-    createChoice.textContent = questions[0].choices[i];
-    createChoice.classList.add("q1");
-  }
-};
-
-var questionTwo = function () {
-  var createQuestion = document.createElement("p");
-  questionEl.appendChild(createQuestion);
-  createQuestion.textContent = questions[1].question;
-  for (var i = 0; i < questions[1].choices.length; i++) {
-    var createChoice = document.createElement("button");
-    questionEl.appendChild(createChoice);
-    createChoice.textContent = questions[1].choices[i];
-  }
-};
-
-var answerChoiceButtons = document.querySelector(".q1");
-
-answerChoiceButtons.addEventListener("click", function () {
-  questionTwo();
-});
-// var questionThree = function() {
-//     var createQuestion = document.createElement('p');
-//     questionEl.appendChild(createQuestion);
-//     createQuestion.textContent = questions[2].question;
-//     for (var i = 0; i < questions[2].choices.length; i++) {
-//         var createChoice = document.createElement('button');
-//         questionEl.appendChild(createChoice);
-//         createChoice.textContent = questions[2].choices[i];
-//     };
-// };
-
-// var questionFour = function() {
-//     var createQuestion = document.createElement('p');
-//     questionEl.appendChild(createQuestion);
-//     createQuestion.textContent = questions[3].question;
-//     for (var i = 0; i < questions[3].choices.length; i++) {
-//         var createChoice = document.createElement('button');
-//         questionEl.appendChild(createChoice);
-//         createChoice.textContent = questions[3].choices[i];
-//     };
-// };
-
-// function handles when a user clicks a question
-// check if correct answer was clicked
-// i++ the currentquetionindex so that the next question show up
 
 
 // Questions for quiz
