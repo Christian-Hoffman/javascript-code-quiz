@@ -49,9 +49,9 @@ var questions = [
 var countdownClock = function () {
   var timeLeft = setInterval(function () {
     if (i < 4) {
-      timeRemaining--;
-      $("#timer").text("Time Left: " + timeLeft);
-      if (timeLeft < 1) {
+      timeRemaining = timeRemaining - 1;
+      $("#timer").text("Time Left: " + timeRemaining);
+      if (timeRemaining < 1) {
         $("#timer").text("Times Up! You scored: " + timeRemaining + "points");
         clearInterval(timeLeft);
       }
