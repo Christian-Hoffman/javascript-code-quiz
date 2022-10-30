@@ -1,22 +1,14 @@
-// TODO: Function: Set timer to end quiz when time === 0
-
-// TODO: Function: When answer is given, check if correct, go to next question
-
-// TODO: After last question is answered. Show score and ask user to enter Initials
-
-// TODO: When user inputs initials, save initials and score to highscore leaderboards
-
-// Will need a for loop to display questions
-// Update a value for the questions
-
 var homeEl = document.querySelector("#home");
 var quizEl = document.querySelector("#quiz");
 var endEl = document.querySelector("#end");
 var highscoreEl = document.querySelector("#highscore");
 var questionEl = document.querySelector("#questions");
+
 // var answersEl = document.querySelector('#answers');
+
 var timerEl = document.querySelector("#timer");
 var timeRemaining = 60;
+
 var startButton = document.querySelector("#start");
 var highscoreButton = document.querySelector("#hsbutton");
 
@@ -64,6 +56,23 @@ var setState = function (state) {
   }
 };
 
+
+var countdownClock = function () {
+    var timeLeft = setInterval(function() {
+        if (i < questions.length) {
+            timeRemaining--;
+            $('#timer').text('Time Remaining: ' + timeLeft);
+            if (timeLeft < 1) {
+                $('#timer').text('Times Up! You scored: ' + timeRemaining + 'points');
+                clearInterval(timeLeft);
+            }
+        } else {
+            clearInterval(timeLeft);
+            $('#questions').css('display', 'none');
+            $('#timer').text('You scored: ' + timeRemaining + 'points');
+        }
+    }, 1000);
+};
 
 
 // Questions for quiz
@@ -131,8 +140,8 @@ var displayNext = function () {
     $('.choice').on('click', function (e) {
         if (id < questions.length) {
             isAnswerCorrect(e);
-            id++;
-            displayQuestions(id);
+            i++;
+            displayQuestions(i);
         }
     });
 };
