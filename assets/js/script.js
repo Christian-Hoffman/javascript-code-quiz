@@ -125,6 +125,14 @@ var submitScore = function () {
   localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
 };
 
+var showHighscore = function () {
+  var previousScore = JSON.parse(localStorage.getItem("scoreArray"));
+  $("#hsList").text("");
+  for (var x = 0; x < previousScore.length; x++) {
+    $("#hsList").append("<li>" + previousScore[x].initials + ": " + previousScore[x].highscore + "</li>");
+  }
+};
+
 $("#start").on("click", function () {
   restart();
   displayNext();
@@ -132,7 +140,7 @@ $("#start").on("click", function () {
 });
 
 $("#hsbutton").on("click", function () {
-  restart();
+  showHighscore();
   $("#timer").text("");
   $("#home").css("display", "none");
   $("#quiz").css("display", "none");
