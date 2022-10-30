@@ -1,46 +1,43 @@
-var init = function () {
-  setState("home");
-};
+// var setState = function (state) {
+//   if (state === "home") {
+//     $("#home").css(
+//       "style",
+//       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
+//     );
+//     $("#quiz").css("style", "display: none;");
+//     $("#end").css("style", "display: none;");
+//     $("#highscore").css("style", "display: none;");
+//   }
+//   if (state === "quiz") {
+//     $("#home").css("style", "display: none;");
+//     $("#quiz").css(
+//       "style",
+//       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
+//     );
+//     $("#end").css("style", "display: none;");
+//     $("#highscore").css("style", "display: none;");
+//   }
+//   if (state === "end") {
+//     $("#home").css("style", "display: none;");
+//     $("#quiz").css("style", "display: none;");
+//     $("#end").css(
+//       "style",
+//       "display: flex; flex-direction:column; background: aquamarine; font-size: 50px; text-align: center;"
+//     );
+//     $("#highscore").css("style", "display: none;");
+//   }
+//   if (state === "highscore") {
+//     $("#home").css("style", "display: none;");
+//     $("#quiz").css("style", "display: none;");
+//     $("#end").css("style", "display: none;");
+//     $("#highscore").css(
+//       "style",
+//       "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
+//     );
+//   }
+// };
 
-var setState = function (state) {
-  if (state === "home") {
-    $("#home").css(
-      "style",
-      "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
-    );
-    $("#quiz").css("style", "display: none;");
-    $("#end").css("style", "display: none;");
-    $("#highscore").css("style", "display: none;");
-  }
-  if (state === "quiz") {
-    $("#home").css("style", "display: none;");
-    $("#quiz").css(
-      "style",
-      "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
-    );
-    $("#end").css("style", "display: none;");
-    $("#highscore").css("style", "display: none;");
-  }
-  if (state === "end") {
-    $("#home").css("style", "display: none;");
-    $("#quiz").css("style", "display: none;");
-    $("#end").css(
-      "style",
-      "display: flex; flex-direction:column; background: aquamarine; font-size: 50px; text-align: center;"
-    );
-    $("#highscore").css("style", "display: none;");
-  }
-  if (state === "highscore") {
-    $("#home").css("style", "display: none;");
-    $("#quiz").css("style", "display: none;");
-    $("#end").css("style", "display: none;");
-    $("#highscore").css(
-      "style",
-      "display: flex; flex-direction: column; background: aquamarine; font-size: 50px; text-align: center;"
-    );
-  }
-};
-
+var i = 0;
 var timeRemaining = 60;
 // Starts countdown clock for quiz
 var countdownClock = function () {
@@ -105,22 +102,23 @@ var questions = [
 ];
 
 var displayQuestions = function (i) {
+  $('#quiz').css("display", "visible");
   // displays question
   $("#question").text(questions[i].options);
   // displays choices
-  $("#choice1").text(questions[i].choice[0].text);
-  $("#choice2").text(questions[i].choice[1].text);
-  $("#choice3").text(questions[i].choice[2].text);
-  $("#choice4").text(questions[i].choice[3].text);
+  $("#choice1").text(questions[i].options[0].text);
+  $("#choice2").text(questions[i].options[1].text);
+  $("#choice3").text(questions[i].options[2].text);
+  $("#choice4").text(questions[i].options[3].text);
 
-  $("#choice1").value(questions[i].choice[0].isCorrect);
-  $("#choice2").value(questions[i].choice[1].isCorrect);
-  $("#choice3").value(questions[i].choice[2].isCorrect);
-  $("#choice4").value(questions[i].choice[3].isCorrect);
+  $("#choice1").val(questions[i].options[0].isCorrect);
+  $("#choice2").val(questions[i].options[1].isCorrect);
+  $("#choice3").val(questions[i].options[2].isCorrect);
+  $("#choice4").val(questions[i].options[3].isCorrect);
 };
 
 var displayNext = function () {
-  displayQuestions(0);
+  displayQuestions(i);
   $(".choice").on("click", function (e) {
     if (id < questions.length) {
       isAnswerCorrect(e);
@@ -135,15 +133,15 @@ var isAnswerCorrect = function (e) {
   if ($(e.target).value() === "false") {
     timeRemaining -= 10;
     $("#result").text("Incorrect");
-  } else if ($(e.target).value() === "true") {
+  } else if ($(e.target).val() === "true") {
     $("#result").text("Correct");
   }
 };
 
 $("#start").on("click", function () {
-  setState("quiz");
+  $("home").css("display", "none");
   displayNext();
-  countdownClock();
+  // countdownClock();
 });
 
 init();
