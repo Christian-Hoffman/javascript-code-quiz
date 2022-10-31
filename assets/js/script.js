@@ -111,13 +111,13 @@ var displayNext = function () {
   });
 };
 
+var scoreArray = [];
 var submitScore = function () {
   var scores = {
     initials: $("input[name='initials']").val(),
     highscore: timeRemaining,
   };
   localStorage.setItem("scores", JSON.stringify(timeRemaining));
-  var scoreArray = [];
   scoreArray.push(scores);
   scoreArray = scoreArray.concat(
     JSON.parse(localStorage.getItem("scoreArray") || "[]")
@@ -129,7 +129,13 @@ var showHighscore = function () {
   var previousScore = JSON.parse(localStorage.getItem("scoreArray"));
   $("#hsList").text("");
   for (var x = 0; x < previousScore.length; x++) {
-    $("#hsList").append("<li class='listItem'>" + previousScore[x].initials + ": " + previousScore[x].highscore + "</li>");
+    $("#hsList").append(
+      "<li class='listItem'>" +
+        previousScore[x].initials +
+        ": " +
+        previousScore[x].highscore +
+        "</li>"
+    );
   }
 };
 
@@ -150,10 +156,19 @@ $("#hsbutton").on("click", function () {
 
 $("#submitHS").on("click", function () {
   submitScore();
-  restart();
   $("#timer").text("");
-  $("#home").css("display", "none");
   $("#quiz").css("display", "none");
   $("#end").css("display", "none");
-  $("#highscore").css("display", "flex");
+  $("#highscore").css("display", "none");
+  $("#home").css("display", "flex");
+  // showHighscore();
+});
+
+$("#goHome").on("click", function () {
+  restart();
+  $("#timer").text("");
+  $("#quiz").css("display", "none");
+  $("#end").css("display", "none");
+  $("#highscore").css("display", "none");
+  $("#home").css("display", "flex");
 });
