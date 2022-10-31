@@ -111,12 +111,29 @@ main {
     color: black;
 }
 
+#hsTitle {
+    font-size: 80px;
+    color: #DCE1E3;
+}
+
 #submitHS{
     background-color: #591C0B;
     color: #DCE1E3;
     margin-top: 10px;
     width: 100px;
     height: 40px;
+    padding: 10px;
+}
+
+#hsList {
+    background-color: #591C0B;
+    color: #DCE1E3;
+    font-size: 40px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.listItem {
     padding: 10px;
 }
 
@@ -135,4 +152,5 @@ main {
 
 #highscore {
     display: none;
+    flex-direction: column;
 }

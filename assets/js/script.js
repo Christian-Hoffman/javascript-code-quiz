@@ -129,7 +129,7 @@ var showHighscore = function () {
   var previousScore = JSON.parse(localStorage.getItem("scoreArray"));
   $("#hsList").text("");
   for (var x = 0; x < previousScore.length; x++) {
-    $("#hsList").append("<li>" + previousScore[x].initials + ": " + previousScore[x].highscore + "</li>");
+    $("#hsList").append("<li class='listItem'>" + previousScore[x].initials + ": " + previousScore[x].highscore + "</li>");
   }
 };
 
